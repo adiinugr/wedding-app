@@ -16,11 +16,12 @@ const Login = () => {
   const [auth, setAuth] = useContext(AuthContext);
 
   const history = useHistory();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const { email, password } = values;
 
-    await fetch("http://localhost:5000/api/user/login", {
+    await fetch(API_URL + "/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
