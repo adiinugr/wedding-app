@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 
+import { AuthContext } from "../context/AuthContext";
+
 import TryoutList from "./student/TryoutList";
 import TryoutHistory from "./student/TryoutHistory";
 import TestList from "./admin/TestLists";
@@ -12,7 +14,7 @@ import AddQuiz from "./admin/AddQuiz";
 import EditQuiz from "./admin/EditQuiz";
 import CustomMenu from "../components/CustomMenu";
 import HistoryDetail from "./student/HistoryDetail";
-import { AuthContext } from "../context/AuthContext";
+import ChangePassword from "./student/ChangePassword";
 
 export default function Dashboard() {
   const [auth, setAuth] = useContext(AuthContext);
@@ -29,7 +31,7 @@ export default function Dashboard() {
 
     setTimeout(() => {
       history.push("/");
-    }, 100);
+    }, 1000);
   };
 
   return (
@@ -68,6 +70,11 @@ export default function Dashboard() {
               <Route
                 path={`${url}/history/history-detail/:testId`}
                 component={HistoryDetail}
+              />
+
+              <Route
+                path={`${url}/change-password`}
+                component={ChangePassword}
               />
 
               <Route exact path={`${url}/test`} component={TestList} />

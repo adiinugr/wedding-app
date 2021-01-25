@@ -3,6 +3,7 @@ import {
   MdAssignment,
   MdEventNote,
   MdExitToApp,
+  MdLock,
   MdViewList,
 } from "react-icons/md";
 import { NavLink, useRouteMatch } from "react-router-dom";
@@ -34,6 +35,12 @@ const CustomMenu = ({
       link: `${url}/history`,
       icon: <MdViewList size={18} />,
       title: "History",
+    },
+    {
+      id: 3,
+      link: `${url}/change-password`,
+      icon: <MdLock size={18} />,
+      title: "Ganti Password",
     },
   ];
 

@@ -112,7 +112,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.name}
-                      placeholder="John Doe"
+                      placeholder="Buggy D Clown"
                     />
                     <div className="mt-1 text-red-500">
                       {errors.name && touched.name && errors.name}
@@ -129,7 +129,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.email}
-                      placeholder="mike@gmail.com"
+                      placeholder="buggy@gmail.com"
                     />
                     <div className="mt-1 text-red-500">
                       {errors.email && touched.email && errors.email}
@@ -148,7 +148,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
-                      placeholder="Enter your password"
+                      placeholder="********"
                     />
                     <div className="mt-1 text-red-500">
                       {errors.password && touched.password && errors.password}
