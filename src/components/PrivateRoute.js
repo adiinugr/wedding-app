@@ -1,5 +1,4 @@
 import { Route, Redirect } from "react-router-dom";
-import { getCurrentUser } from "../services/authService";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

@@ -27,6 +27,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-toggle": "^4.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Toggle from "react-toggle";
+
+import { useHistory } from "react-router-dom";
 
 import authHeader from "../../services/authHeader";
 
@@ -10,9 +12,12 @@ import CustomHeader from "../../components/CustomHeader";
 import CustomAlert from "../../components/CustomAlert";
 import CustomButton from "../../components/CustomButton";
 
+import "react-toggle/style.css";
+
 function AddTest() {
   const [message, setMessage] = useState("");
   const [messageStatus, setMessageStatus] = useState(null);
+  const [isActive, setIsActive] = useState(false);
 
   const history = useHistory();
   const API_URL = process.env.REACT_APP_API_URL;
@@ -20,7 +25,7 @@ function AddTest() {
   const handleSubmit = async (values, { setSubmitting }) => {
     const { number, title, duration, desc } = values;
 
-    const data = { number, title, duration, desc };
+    const data = { number, title, duration, desc, isActive };
 
     const res = await axios.post(`${API_URL}/test`, data, {
       headers: authHeader(),
@@ -128,6 +133,14 @@ function AddTest() {
               ></textarea>
               <div className="mt-2 text-red-500">
                 {errors.desc && touched.desc && errors.desc}
+              </div>
+              <div className="flex mb-4 items-center justify-end">
+                <div className="mr-4">Status</div>
+                <Toggle
+                  checked={isActive}
+                  aria-label="No label tag"
+                  onChange={() => setIsActive(!isActive)}
+                />
               </div>
               <CustomButton type="submit" disabled={isSubmitting}>
                 Submit

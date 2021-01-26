@@ -137,10 +137,6 @@ const Test = () => {
         headers: authHeader(),
       })
       .then((res) => history.replace("/dashboard/history"));
-
-    // setTimeout(() => {
-    //   history.replace("/dashboard/history");
-    // }, 1000);
   };
 
   return (

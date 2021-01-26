@@ -73,7 +73,7 @@ export default function TryoutList() {
                 <p className="text-gray-800">{test.desc}</p>
               </div>
               <div className="w-40 ml-4 flex items-center justify-center">
-                {test.quizzes.length > 0 ? (
+                {test.quizzes.length > 0 && test.isActive === true ? (
                   <Link to={`/test/${test._id}`}>
                     <button
                       className="

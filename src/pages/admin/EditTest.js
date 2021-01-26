@@ -5,12 +5,14 @@ import axios from "axios";
 import CustomAlert from "../../components/CustomAlert";
 import CustomHeader from "../../components/CustomHeader";
 import authHeader from "../../services/authHeader";
+import Toggle from "react-toggle";
 
 function EditTest() {
   const [number, setNumber] = useState("");
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState("");
   const [desc, setDesc] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   const [message, setMessage] = useState("");
   const [messageStatus, setMessageStatus] = useState(null);
@@ -22,12 +24,13 @@ function EditTest() {
   useEffect(() => {
     async function getData() {
       const res = await axios.get(`${API_URL}/test/${testId}`);
-      const { number, title, duration, desc } = res.data.data;
+      const { number, title, duration, desc, isActive } = res.data.data;
 
       setNumber(number);
       setTitle(title);
       setDuration(duration);
       setDesc(desc);
+      setIsActive(isActive);
     }
 
     getData();
@@ -36,7 +39,7 @@ function EditTest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = { number, title, duration, desc };
+    const data = { number, title, duration, desc, isActive };
 
     const res = await axios.put(`${API_URL}/test/update/${testId}`, data, {
       headers: authHeader(),
@@ -102,7 +105,14 @@ function EditTest() {
             placeholder="Deskripsi"
             className="border p-2 mt-3 w-full text-sm"
           ></textarea>
-
+          <div className="flex mb-4 items-center justify-end">
+            <div className="mr-4">Status</div>
+            <Toggle
+              checked={isActive}
+              aria-label="No label tag"
+              onChange={() => setIsActive(!isActive)}
+            />
+          </div>
           <input
             type="submit"
             value="Submit"
