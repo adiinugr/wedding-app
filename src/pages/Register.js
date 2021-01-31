@@ -8,6 +8,7 @@ import CustomButton from "../components/CustomButton";
 import CustomAlert from "../components/CustomAlert";
 
 import Mtku from "../assets/images/mtku.png";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Login = () => {
   const [message, setMessage] = useState("");
@@ -18,6 +19,8 @@ const Login = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const { name, email, password } = values;
+
+    setSubmitting(true);
 
     await fetch(API_URL + "/user/register", {
       method: "POST",
@@ -156,6 +159,11 @@ const Login = () => {
                   </div>
                   <div className="mt-8 mb-4 md:lg-0">
                     <CustomButton type="submit" disabled={isSubmitting}>
+                      {isSubmitting && (
+                        <div className="animate-spin mr-3">
+                          <AiOutlineLoading3Quarters />
+                        </div>
+                      )}
                       Register
                     </CustomButton>
                   </div>

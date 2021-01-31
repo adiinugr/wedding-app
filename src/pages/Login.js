@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Link, useHistory } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import LoginImage from "../assets/images/login.svg";
 import CustomButton from "../components/CustomButton";
 import CustomAlert from "../components/CustomAlert";
+
 import { AuthContext } from "../context/AuthContext";
 
 import Mtku from "../assets/images/mtku.png";
@@ -21,6 +23,8 @@ const Login = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     const { email, password } = values;
 
+    setSubmitting(true);
+
     await fetch(API_URL + "/user/login", {
       method: "POST",
       headers: {
@@ -35,7 +39,6 @@ const Login = () => {
       .then((data) => {
         setMessage(data.message);
         setMessageStatus(data.status);
-        setSubmitting(false);
 
         localStorage.setItem(
           "user",
@@ -50,6 +53,8 @@ const Login = () => {
           isAuth: true,
           user: data.user,
         });
+
+        setSubmitting(false);
 
         setTimeout(() => {
           history.push("/dashboard/tryout-list");
@@ -146,6 +151,11 @@ const Login = () => {
                   </div>
                   <div className="mt-10 mb-4 md:lg-0">
                     <CustomButton type="submit" disabled={isSubmitting}>
+                      {isSubmitting && (
+                        <div className="animate-spin mr-3">
+                          <AiOutlineLoading3Quarters />
+                        </div>
+                      )}
                       Login
                     </CustomButton>
                   </div>
