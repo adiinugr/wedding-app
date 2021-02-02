@@ -16,6 +16,8 @@ import CustomMenu from "../components/CustomMenu";
 import HistoryDetail from "./student/HistoryDetail";
 import ChangePassword from "./student/ChangePassword";
 
+import { AdminRoute } from "../routes/AdminRoute";
+
 export default function Dashboard() {
   const [auth, setAuth] = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
@@ -77,18 +79,21 @@ export default function Dashboard() {
                 component={ChangePassword}
               />
 
-              <Route exact path={`${url}/test`} component={TestList} />
-              <Route path={`${url}/test/add`} component={AddTest} />
-              <Route path={`${url}/test/edit/:testId`} component={EditTest} />
-              <Route
+              <AdminRoute exact path={`${url}/test`} component={TestList} />
+              <AdminRoute path={`${url}/test/add`} component={AddTest} />
+              <AdminRoute
+                path={`${url}/test/edit/:testId`}
+                component={EditTest}
+              />
+              <AdminRoute
                 path={`${url}/test/quiz-list/:testId`}
                 component={QuizLists}
               />
-              <Route
+              <AdminRoute
                 path={`${url}/test/add-quiz/:testId`}
                 component={AddQuiz}
               />
-              <Route
+              <AdminRoute
                 path={`${url}/test/quiz-edit/:testId/:quizId`}
                 component={EditQuiz}
               />

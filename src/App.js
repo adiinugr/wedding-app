@@ -1,16 +1,10 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { PrivateRoute } from "./components/PrivateRoute";
 import { AuthContext } from "./context/AuthContext";
 import { useContext, useEffect } from "react";
 import { getCurrentUser } from "./services/authService";
 
-import HomeScreen from "./pages/HomeScreen";
-import Login from "./pages/Login";
-import Test from "./pages/student/Test";
-import Dashboard from "./pages/Dashboard";
-import AboutScreen from "./pages/AboutScreen";
-import Register from "./pages/Register";
+import RoutePage from "./routes/RoutePage";
 
 function App() {
   const [auth, setAuth] = useContext(AuthContext);
@@ -37,14 +31,7 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/about" component={AboutScreen} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/test/:testId" component={Test} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-      </Switch>
+      <RoutePage />
     </Router>
   );
 }

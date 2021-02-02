@@ -10,7 +10,7 @@ import CustomModal from "../../components/CustomModal";
 const initialQuiz = [
   {
     _id: 1,
-    question: "Pertanyaan?",
+    question: "Loading pertanyaan ...",
     answers: ["a", "b", "c", "d", "e"],
     correctAnswer: "a",
   },
