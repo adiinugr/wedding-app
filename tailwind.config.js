@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ["Roboto", "Arial", "sans-serif"],
+      display: ["Parisienne", "cursive"],
+      body: ["Raleway", "sans-serif"],
     },
   },
   variants: {
