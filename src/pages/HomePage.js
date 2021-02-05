@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Countdown from "react-countdown";
 import { motion } from "framer-motion";
@@ -7,8 +7,11 @@ import { GoBook } from "react-icons/go";
 import { MdLocationOn } from "react-icons/md";
 import { AiOutlineComment } from "react-icons/ai";
 
-import Roses from "../assets/images/roses.jpg";
 import { pageTransition } from "./OpenInvitation";
+import { AudioContext } from "../context/AudioContext";
+
+import Roses from "../assets/images/roses.jpg";
+import MusicFile from "../assets/musics/beautiful-in-white.mp3";
 
 const renderer = ({ days, hours, minutes, seconds, completed }) => {
   if (completed) {
@@ -52,6 +55,17 @@ const HomePage = () => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
+
+  const [audio] = useState(new Audio(MusicFile));
+  const [playing, setPlaying] = useContext(AudioContext);
+
+  useEffect(() => {
+    if (playing) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [audio, playing]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 
 import Roses from "../assets/images/roses.jpg";
-import MusicFile from "../assets/musics/beautiful-in-white.mp3";
 import { Link } from "react-router-dom";
+import { AudioContext } from "../context/AudioContext";
 
 export const pageTransition = {
   transition: "linier",
@@ -11,16 +11,7 @@ export const pageTransition = {
 };
 
 const OpenInvitation = () => {
-  const [audio] = useState(new Audio(MusicFile));
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    if (playing) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }, [audio, playing]);
+  const [playing, setPlaying] = useContext(AudioContext);
 
   return (
     <motion.div

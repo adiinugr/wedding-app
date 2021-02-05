@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 
 import HomePage from "./pages/HomePage";
 import OpenInvitation from "./pages/OpenInvitation";
+import { AudioContextProvider } from "./context/AudioContext";
 
 const App = () => {
   return (
@@ -11,12 +12,14 @@ const App = () => {
       <Route
         render={({ location }) => (
           <AnimatePresence>
-            <Switch location={location} key={location.pathname}>
+            <AudioContextProvider>
               <div className="relative bg-gray-800">
-                <Route exact path="/" component={OpenInvitation} />
-                <Route exact path="/page" component={HomePage} />
+                <Switch location={location} key={location.pathname}>
+                  <Route exact path="/" component={OpenInvitation} />
+                  <Route exact path="/page" component={HomePage} />
+                </Switch>
               </div>
-            </Switch>
+            </AudioContextProvider>
           </AnimatePresence>
         )}
       />
